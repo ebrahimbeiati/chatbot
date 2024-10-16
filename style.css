@@ -250,7 +250,7 @@ body{
     background: white;
 }
 .chat-form  .file-upload-wrapper :where(img, #file-cancel),
-.chat-form  .file-upload-wrapper.file-uploaded  #send-message{
+.chat-form  .file-upload-wrapper.file-uploaded  #file-upload{
     display: none;
 }
 .chat-form  .file-upload-wrapper.file-uploaded img,

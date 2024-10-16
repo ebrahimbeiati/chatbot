@@ -4,6 +4,9 @@ const chatBody = document.querySelector(".chat-body");
 const sendMessageButton = document.getElementById("send-message");
 const fileInput = document.getElementById("file-input");
 const fileUploadWrapper = document.querySelector(".file-upload-wrapper");
+const fileCancelButton = document.getElementById("file-cancel");
+
+
 
 
 
@@ -169,6 +172,14 @@ fileInput.addEventListener("change", (e) => {
   };
   reader.readAsDataURL(file); // Start reading the file
 });
+
+//cancel file upload
+fileCancelButton.addEventListener("click", () => {
+    userData.file = {};
+    fileInput.value = "";
+    fileUploadWrapper.classList.remove('file-uploaded')
+    fileUploadWrapper.querySelector('img').src = "";
+})
 
 
 
