@@ -3,6 +3,9 @@ const messageInput = document.querySelector(".message-input");
 const chatBody = document.querySelector(".chat-body");
 const sendMessageButton = document.getElementById("send-message");
 const fileInput = document.getElementById("file-input");
+const fileUploadWrapper = document.querySelector(".file-upload-wrapper");
+
+
 
 const API_KEY = "AIzaSyDgkpzr6v6zxF1sF_ILa24z_kxBFNfVu3o";
 
@@ -48,6 +51,7 @@ const generateBotResponse = async (incomingMessageDiv) => {
       messageElement.textContent = "Error: " + error.message;
       messageElement.style.color = "red";
   } finally {
+      userData.file();
       incomingMessageDiv.classList.remove("thinking");
     chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
 
@@ -89,10 +93,12 @@ const handleOutgoingMessage = (e, userMessage) => {
   messageInput.value = "";
 
   // Create the message content with userData.message
-    const messageContent = `<div class="message-text"></div>
-    ${userData.file.data ? `<img src="data:${userData.file.mime_type}; base64, ${userData.file.data}" class="attachment"/>` : ""}
-    `
-        ;
+   const messageContent = `<div class="message-text"></div>
+    ${
+      userData.file.data
+        ? `<img src="data:${userData.file.mime_type};base64,${userData.file.data}" class="attachment"/>`
+        : ""}`;
+
   const outgoingMessageDiv = createMessageElement(
     messageContent,
     "user-message"
@@ -144,23 +150,26 @@ sendMessageButton.addEventListener("click", (e) => {
 });
 
 
-
 // Handle file upload
 fileInput.addEventListener("change", (e) => {
-    const file = fileInput.files[0];
-    if (file) return;
+  const file = fileInput.files[0];
+  if (!file) return; // Only return if no file is selected
 
-    const reader = new FileReader();
+  const reader = new FileReader();
     reader.onload = (e) => {
-        const base64String = e.target.split(',')[1];
-        userData.file= {
-            data: base64String,
-                mime_type: file.type
-        }
-        fileInput.value = '';
-    }
-    reader.readAsDataURL(file);
-    })
+        fileUploadWrapper.querySelector('img').src = e.target.result;
+        fileUploadWrapper.classList.add('file-uploaded')
+
+    const base64String = e.target.result.split(",")[1]; // Access the base64 string from the FileReader result
+    userData.file = {
+      data: base64String,
+      mime_type: file.type,
+    };
+    fileInput.value = ""; // Clear the file input after reading
+  };
+  reader.readAsDataURL(file); // Start reading the file
+});
+
 
 
 document.getElementById('file-upload').addEventListener("click", ()=> fileInput.click())
