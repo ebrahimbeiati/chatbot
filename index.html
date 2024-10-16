@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Single link to Google Fonts for Material Symbols -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet" href="style.css">
+    <title>Chat-Bot</title>
+</head>
+<body>
+    <div class="chatbot-popup">
+        <!-- Chat bot header -->
+        <div class="chat-header">
+            <div class="header-info">
+                <img src="./images/chatbot.png" width="50px" height="50px" alt="">
+                <h2 class="logo-text">ChatBot</h2>
+            </div>
+            <!-- Icon: keyboard_arrow_down -->
+            <button id="close-chat" class="material-symbols-rounded">
+                keyboard_arrow_down
+            </button>
+        </div>
+        
+        <!-- Chat bot body -->
+        <div class="chat-body">
+            <div class="message bot-message">
+                <img src="./images/chatbot.png" width="50px" height="50px" alt="">
+                <div class="message-text">
+                    <p class="message">Hi!👋 <br/> How can I help you?</p>
+                </div>
+            </div>
+            
+           
+        </div>
+
+        <!-- Chat bot footer -->
+        <div class="chat-footer">
+            <form action="" class="chat-form">
+                <textarea name="" placeholder="Message..." class="message-input" required></textarea>
+           
+            <div class="chat-controls">
+                <!-- Icon: sentiment_satisfied -->
+                <button type="button" class="material-symbols-rounded">
+                    sentiment_satisfied
+                </button>
+
+                <!-- Icon: attach_file -->
+                <button type="button" class="material-symbols-rounded">
+                    attach_file
+                </button>
+
+                <!-- Icon: arrow_upward -->
+                <button type="submit"
+                id="send-message"
+                 class="material-symbols-rounded">
+                    arrow_upward
+                </button>
+                 </form>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
