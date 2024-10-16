@@ -69,6 +69,8 @@ body{
     gap: 20px;
     transition: all 0.3s ease;
     margin-bottom: 80px;
+    scrollbar-width: thin;
+    scrollbar-color: rebeccapurple green;
     
 }
 .chat-body .bot-message{
